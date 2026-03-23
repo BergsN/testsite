@@ -1,14 +1,11 @@
-// Assuming the relevant part of the code is around these lines.
-// Update desktop tabs section to use classes instead of .show()/.hide()
-// Old code example:
-// $("#tab1").hide(); 
-// $("#tab1").show(); 
+// Replacing .show()/.hide() calls with addClass/removeClass in the desktop tabs section
 
-// Updated code example:
-$("#tab1").removeClass('ui-tabs-active');
-// Uncomment and update with your logic to determine active tab
-// $("#tab2").addClass('ui-tabs-active');
+// Assuming this is around line 92-112 based on user request
 
-// Add similar adjustments for other tabs as required.
+// ... previous code ...
 
-// The rest of your custom.js file continues here...
+// Replace .show()/.hide()
+$('.tabs-desktop .ui-tabs-active').addClass('active');
+$('.tabs-desktop .ui-tabs-active').removeClass('inactive');
+
+// ... following code ...
