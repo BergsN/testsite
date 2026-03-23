@@ -42,12 +42,21 @@
 
 	// Tabs / Accordion (accordion on mobile, tabs on desktop)
 	$(function() {
+		var currentTabsMode = null;
+
 		function initTabsAccordion() {
 			var isMobile = $(window).width() < 992;
+			var nextMode = isMobile ? 'mobile' : 'desktop';
 			var $wrapper = $('.tabs-accordion-wrapper');
 			var $items = $wrapper.find('.tab-accordion-item');
 			var $triggers = $wrapper.find('.tab-trigger');
 			var $panels = $wrapper.find('.tab-panel');
+
+			// Prevent collapsing open mobile panel on resize/scroll jitter
+			if (currentTabsMode === nextMode) {
+				return;
+			}
+			currentTabsMode = nextMode;
 
 			if (isMobile) {
 				// Mobile: accordion - content appears under each tab
@@ -83,7 +92,7 @@
 			} else {
 				// Desktop: tabs - triggers in left column, panels in right
 				$panels.show().attr('aria-hidden', 'false');
-				$triggers.off('click.tabsAccordion');
+				$triggers.off('click.tabsAccordion keydown.tabsAccordion');
 
 				$triggers.on('click', function(e) {
 					e.preventDefault();
